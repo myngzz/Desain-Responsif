@@ -1,0 +1,523 @@
+/* ============================================================
+   HALAMAN DIPERBAIKI — Desain Responsif TechZone Lab
+   Semua perbaikan diberi komentar sesuai laporan analisis
+   ============================================================ */
+
+/* --- Reset sederhana --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* ============================================================
+   PERBAIKAN 2: Ganti width: 1200px → max-width + width: 100%
+   Agar container bisa menyusut di layar kecil
+   ============================================================ */
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================================
+   NAVIGASI
+   ============================================================ */
+
+/* PERBAIKAN 3: Navbar full-width, hilangkan left: 50% yang bermasalah */
+.navbar {
+  background-color: #2c3e50;
+  width: 100%;          /* was: 1200px — menyebabkan overflow */
+  position: fixed;
+  top: 0;
+  left: 0;              /* was: left: 50% tanpa transform */
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  gap: 20px;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  color: #fff;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+  gap: 30px;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.nav-links li a:hover {
+  color: #3498db;
+}
+
+/* PERBAIKAN 5: Badge dikembalikan ke alur normal (bukan absolute) */
+.badge {
+  background-color: #f39c12;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+  /* Dulu: position: absolute; top: 90px; right: 80px;
+     — menyebabkan tumpang tindih di layar kecil */
+}
+
+/* PERBAIKAN 5: Tombol hamburger, tersembunyi di desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero {
+  margin-top: 70px;
+  min-height: 500px;        /* was: height: 500px — tidak fleksibel */
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* PERBAIKAN 2: Ganti width: 700px → max-width fleksibel */
+.hero-content {
+  color: #fff;
+  max-width: 700px;         /* was: width: 700px — overflow di ponsel */
+  width: 100%;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #e74c3c;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  display: inline-block;
+  margin: 5px;
+}
+
+.btn-green {
+  background-color: #27ae60;
+}
+
+/* ============================================================
+   SECTION TENTANG (ABOUT)
+   PERBAIKAN 3: Ganti float ke CSS Grid dua kolom
+   ============================================================ */
+
+.about {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.about h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* Dulu: float: left — sekarang pakai CSS Grid yang lebih modern */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* PERBAIKAN 6: Gambar responsif dengan max-width: 100% */
+.about-image img {
+  width: 100%;              /* was: width: 500px — overflow di layar kecil */
+  height: auto;             /* was: height: 350px — distorsi gambar */
+  border-radius: 8px;
+}
+
+.about-text h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.about-text p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* ============================================================
+   SECTION LAYANAN (SERVICES)
+   PERBAIKAN 3: Tambah flex-wrap agar kartu bisa turun
+   ============================================================ */
+
+.services {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.services h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;          /* was: tidak ada — 3 kartu dipaksa sejajar */
+  gap: 20px;
+}
+
+/* PERBAIKAN 2: Ganti width tetap ke flex: 1 fleksibel */
+.service-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  flex: 1 1 280px;          /* was: width: 360px tetap */
+  text-align: center;
+}
+
+.service-card .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SECTION TIM (TEAM)
+   PERBAIKAN 3: Tambah flex-wrap agar kartu bisa turun
+   ============================================================ */
+
+.team {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.team h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;          /* was: tidak ada wrap, overflow di ponsel */
+  gap: 20px;
+  justify-content: center;
+}
+
+/* PERBAIKAN 2: Ganti width tetap ke flex fleksibel */
+.team-member {
+  flex: 1 1 200px;          /* was: width: 270px tetap */
+  max-width: 250px;
+  text-align: center;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.team-member h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  font-size: 13px;
+  color: #888;
+}
+
+/* ============================================================
+   SECTION KONTAK (CONTACT)
+   PERBAIKAN 6: Form responsif, hilangkan width: 600px tetap
+   ============================================================ */
+
+.contact {
+  padding: 60px 0;
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+.contact h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  max-width: 600px;         /* was: width: 600px — overflow di ponsel */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  height: 130px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+}
+
+.contact-form button:hover {
+  background-color: #c0392b;
+}
+
+/* ============================================================
+   FOOTER
+   PERBAIKAN 3: flex-wrap agar kolom footer bisa turun
+   ============================================================ */
+
+footer {
+  background-color: #1a252f;
+  color: #aaa;
+  padding: 30px 0;
+}
+
+footer .footer-grid {
+  display: flex;
+  flex-wrap: wrap;          /* was: tidak ada wrap */
+  gap: 30px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+footer .footer-col {
+  flex: 1 1 180px;          /* was: tidak ada flex — kolom kaku */
+}
+
+footer .footer-col h4 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.footer-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #aaa;
+}
+
+footer .footer-col ul {
+  list-style: none;
+}
+
+footer .footer-col ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+footer .footer-col ul li a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+footer .footer-col ul li a:hover {
+  color: #fff;
+}
+
+footer .footer-bottom {
+  border-top: 1px solid #2c3e50;
+  padding-top: 20px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ============================================================
+   PERBAIKAN 4: MEDIA QUERIES
+   Breakpoint tablet (≤992px) dan ponsel (≤600px)
+   ============================================================ */
+
+/* --- Tablet (≤ 992px) --- */
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;   /* Kolom menjadi satu di tablet */
+  }
+
+  .badge {
+    display: none;                 /* Sembunyikan badge di tablet agar tidak sesak */
+  }
+}
+
+/* --- Ponsel (≤ 600px) --- */
+@media (max-width: 600px) {
+
+  /* Navbar: tampilkan hamburger, sembunyikan link */
+  .hamburger {
+    display: flex;
+  }
+
+  .badge {
+    display: none;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #2c3e50;
+    padding: 10px 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    border-top: 1px solid #3d5166;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .btn-primary {
+    display: block;
+    margin: 8px auto;
+    text-align: center;
+  }
+
+  /* Layanan: 1 kolom */
+  .services-grid {
+    flex-direction: column;
+  }
+
+  .service-card {
+    flex: none;
+    width: 100%;
+  }
+
+  /* Tim: 2 kolom di ponsel */
+  .team-member {
+    flex: 1 1 140px;
+    max-width: none;
+  }
+
+  /* Form kontak */
+  .contact-form button {
+    width: 100%;
+  }
+
+  /* Footer: 2 kolom di ponsel */
+  .footer-col {
+    flex: 1 1 140px;
+  }
+
+  /* Judul section lebih kecil */
+  .about h2, .services h2, .team h2, .contact h2 {
+    font-size: 24px;
+  }
+}
