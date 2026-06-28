@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
   <meta charset="UTF-8">
-  <!-- PERBAIKAN 1: Tambahkan meta viewport agar media query aktif di ponsel -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechZone — Halaman Diperbaiki</title>
-  <link rel="stylesheet" href="style.css">
+  <title>TechZone — Halaman Bermasalah</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -13,27 +11,17 @@
        NAVIGASI
        ===================================================== -->
   <nav class="navbar">
-    <div class="container nav-container">
+    <div class="container">
       <div class="logo">TechZone Lab</div>
-
-      <!-- PERBAIKAN 5: Tombol hamburger untuk layar kecil -->
-      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links">
         <li><a href="#beranda">Beranda</a></li>
         <li><a href="#tentang">Tentang</a></li>
         <li><a href="#layanan">Layanan</a></li>
         <li><a href="#tim">Tim</a></li>
         <li><a href="#kontak">Kontak</a></li>
       </ul>
-
-      <!-- PERBAIKAN 5: Badge dikembalikan ke dalam alur normal navbar -->
-      <span class="badge">🔥 Daftar Sekarang!</span>
     </div>
+    <span class="badge">🔥 Daftar Sekarang!</span>
   </nav>
 
   <!-- =====================================================
@@ -44,7 +32,7 @@
       <h1>Solusi Teknologi<br>Terdepan untuk Bisnis</h1>
       <p>Kami menyediakan layanan pengembangan web, aplikasi mobile, dan konsultasi teknologi untuk membantu bisnis Anda berkembang di era digital.</p>
       <a href="#layanan" class="btn-primary">Lihat Layanan</a>
-      <a href="#kontak" class="btn-primary btn-green">Hubungi Kami</a>
+      <a href="#kontak" class="btn-primary" style="margin-left:15px; background-color:#27ae60;">Hubungi Kami</a>
     </div>
   </section>
 
@@ -54,7 +42,6 @@
   <section class="about" id="tentang">
     <div class="container">
       <h2>Tentang Kami</h2>
-      <!-- PERBAIKAN 3: Ganti float ke CSS Grid -->
       <div class="about-grid">
         <div class="about-image">
           <img src="https://via.placeholder.com/500x350" alt="gambar">
@@ -75,7 +62,6 @@
   <section class="services" id="layanan">
     <div class="container">
       <h2>Layanan Kami</h2>
-      <!-- PERBAIKAN 3: flex-wrap agar kolom bisa turun ke bawah -->
       <div class="services-grid">
         <div class="service-card">
           <div class="icon">🖥️</div>
@@ -102,7 +88,6 @@
   <section class="team" id="tim">
     <div class="container">
       <h2>Tim Kami</h2>
-      <!-- PERBAIKAN 3: flex-wrap agar kolom bisa turun ke bawah -->
       <div class="team-grid">
         <div class="team-member">
           <img src="https://via.placeholder.com/150" alt="foto">
@@ -134,11 +119,10 @@
   <section class="contact" id="kontak">
     <div class="container">
       <h2>Hubungi Kami</h2>
-      <!-- PERBAIKAN 6: Form tidak pakai width tetap -->
       <form class="contact-form">
         <input type="text" placeholder="Nama Lengkap" required>
         <input type="email" placeholder="Alamat Email" required>
-        <select>
+        <select style="width:100%; padding:12px; margin-bottom:20px; border:none; border-radius:4px;">
           <option>-- Pilih Layanan --</option>
           <option>Pengembangan Web</option>
           <option>Aplikasi Mobile</option>
@@ -155,11 +139,10 @@
        ===================================================== -->
   <footer>
     <div class="container">
-      <!-- PERBAIKAN 3: flex-wrap agar kolom bisa turun -->
       <div class="footer-grid">
         <div class="footer-col">
           <h4>TechZone Lab</h4>
-          <p class="footer-desc">Solusi teknologi terdepan untuk bisnis modern Anda.</p>
+          <p style="font-size:13px; line-height:1.6; color:#aaa;">Solusi teknologi terdepan untuk bisnis modern Anda.</p>
         </div>
         <div class="footer-col">
           <h4>Layanan</h4>
@@ -193,23 +176,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Hamburger menu toggle
-    const btn = document.getElementById('hamburgerBtn');
-    const nav = document.getElementById('navLinks');
-    btn.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      btn.classList.toggle('active');
-    });
-    // Tutup menu saat link diklik
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        btn.classList.remove('active');
-      });
-    });
-  </script>
 
 </body>
 </html>
